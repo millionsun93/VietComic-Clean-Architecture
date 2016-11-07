@@ -1,0 +1,56 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'me.tatarka.retrolambda'
+
+android {
+    compileSdkVersion rootProject.ext.androidCompileSdkVersion
+    buildToolsVersion rootProject.ext.androidBuildToolsVersion
+    defaultConfig {
+        applicationId "com.quanlt.vietcomicclean"
+        minSdkVersion rootProject.ext.androidMinSdkVersion
+        targetSdkVersion rootProject.ext.androidTargetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile project(':domain')
+    compile project(':data')
+    compile 'com.android.support:appcompat-v7:25.0.0'
+    compile 'com.android.support:design:25.0.0'
+    def presentationDependencies = rootProject.ext.presentationDependencies
+
+    compile presentationDependencies.recyclerView
+    compile presentationDependencies.appcompat
+    compile presentationDependencies.design
+    compile presentationDependencies.cardview
+    compile presentationDependencies.palette
+    compile presentationDependencies.dagger
+    apt presentationDependencies.daggerCompiler
+    compile presentationDependencies.butterKnife
+    apt presentationDependencies.butterKnifeCompiler
+    compile presentationDependencies.rxJava
+    compile presentationDependencies.rxAndroid
+    compile presentationDependencies.okHttpLogging
+    compile presentationDependencies.retrofitConverter
+    compile presentationDependencies.retrofitAdapter
+    compile presentationDependencies.glide
+    compile presentationDependencies.glidePalette
+    compile presentationDependencies.leakCanary
+    compile presentationDependencies.tagGroup
+    provided presentationDependencies.javaxAnnotation
+}

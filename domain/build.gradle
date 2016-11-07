@@ -1,0 +1,21 @@
+apply plugin: 'java'
+
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"
+
+configurations {
+  provided
+}
+
+def domainDependencies = rootProject.ext.domainDependencies
+def domainTestDependencies = rootProject.ext.domainTestDependencies
+
+dependencies {
+  provided domainDependencies.javaxAnnotation
+
+  compile domainDependencies.javaxInject
+  compile domainDependencies.rxJava
+
+  testCompile domainTestDependencies.junit
+  testCompile domainTestDependencies.mockito
+}
